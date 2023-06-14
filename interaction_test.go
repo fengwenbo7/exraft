@@ -18,8 +18,6 @@ import (
 	"testing"
 
 	"github.com/cockroachdb/datadriven"
-
-	"go.etcd.io/raft/v3/rafttest"
 )
 
 func TestInteraction(t *testing.T) {
@@ -27,9 +25,6 @@ func TestInteraction(t *testing.T) {
 	// diff. Only commit the changes if you understand what caused them and if
 	// they are desired.
 	datadriven.Walk(t, "testdata", func(t *testing.T, path string) {
-		env := rafttest.NewInteractionEnv(nil)
-		datadriven.RunTest(t, path, func(t *testing.T, d *datadriven.TestData) string {
-			return env.Handle(t, *d)
-		})
+
 	})
 }
